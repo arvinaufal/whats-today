@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
     IoChatbubbleOutline,
     IoShareOutline,
@@ -6,7 +7,7 @@ import {
 
 export default function PostCard({ post }) {
     return (
-        <div className="flex flex-col w-full border-b border-slate-400 md:border-none md:w-1/2 px-6 py-4 bg-white md:rounded-3xl shadow-xl hover:shadow-2xl cursor-default md:mb-6">
+        <Link href={`/posts/${post.id}`} className="flex flex-col w-full md:w-1/2 border-b border-slate-400 md:border-none px-6 py-4 bg-white md:rounded-3xl shadow-xl hover:shadow-2xl cursor-default md:mb-6">
             <div className="flex w-full mb-3">
                 <span className="font-bold text-2xl">{post.title}</span>
             </div>
@@ -48,6 +49,6 @@ export default function PostCard({ post }) {
                     <span className="text-slate-500 text-sm">{post.shares}</span>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }

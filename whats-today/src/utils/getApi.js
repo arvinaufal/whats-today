@@ -22,7 +22,6 @@ export const getComments = async (post_id) => {
     }
 };
 
-
 export const getPosts = async () => {
     try {
         let res = await fetch(
@@ -48,6 +47,31 @@ export const getPosts = async () => {
 
         return posts;
     } catch (error) {
+        throw new Error("Failed to fetch data");
+    }
+};
+
+export const getDetailPost = async (post_id) => {
+    try {
+        let res = await fetch(
+            `https://gorest.co.in/public/v2/posts/${post_id}`
+        );
+        
+        res = await res.json();
+        const user = await getUserDetail(res.user_id);
+        let name = user.name ? user.name : "Anonymous";
+        let email = user.email ? user.email : "anonymous";
+        res.user = {
+            name,
+            email
+        }
+        res.comments = await getComments(res.id);
+        res.likes = Math.floor(Math.random() * 1000);
+        res.shares = Math.floor(Math.random() * 20);
+        
+        return res;
+    } catch (error) {
+        console.log(error);
         throw new Error("Failed to fetch data");
     }
 };
