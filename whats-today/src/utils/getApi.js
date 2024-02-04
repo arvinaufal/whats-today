@@ -22,10 +22,14 @@ export const getComments = async (post_id) => {
     }
 };
 
-export const getPosts = async () => {
+export const getPosts = async (page) => {
+    if (!page) {
+        page = 1;
+    }
+
     try {
         let res = await fetch(
-            "https://gorest.co.in/public/v2/posts?page=1&per_page=20"
+            `https://gorest.co.in/public/v2/posts?page=${page}&per_page=20`
         );
         
         res = await res.json();
