@@ -13,8 +13,10 @@ export default async function DetailPost({ params }) {
     const post = await getDetailPost(params.post_id);
 
     return (
-        <div className="flex w-screen h-screen bg-orange-100 items-center justify-center">
-            <div className="flex flex-row w-4/5 h-5/6 bg-purple-100 rounded-xl">
+        <div className="flex w-screen h-screen bg-orange-100 md:items-center md:justify-center">
+
+            {/* Display for mid-wide screen */}
+            <div className="hidden md:flex flex-row w-4/5 h-5/6 bg-purple-100 rounded-xl ">
                 <div className="flex flex-col w-1/2 h-full border-r border-slate-200 bg-white rounded-l-xl items-center">
                     <div className="flex w-full h-1/6  py-4 px-6">
                         <Link href={`/`} className="flex flex-row items-center cursor-pointer">
@@ -89,6 +91,62 @@ export default async function DetailPost({ params }) {
                     </div>
                 </div>
             </div>
+
+            <div className="flex flex-col md:hidden w-full bg-white">
+                <div className="flex flex-row w-full p-4 border border-b-slate-300">
+                    <Link href={`/`} className="flex flex-row items-center cursor-pointer">
+                        <IoArrowBackOutline size={28} color="orange" />
+                        <div className="ml-2">
+                            <span className="text-xl font-semibold text-orange-300 hover:text-orange-500 transition duration-500">Back</span>
+                        </div>
+                    </Link>
+                </div>
+                <div className="flex flex-col w-full px-4 py-2 border-b border-slate-200">
+                    <div className="flex w-full mb-3">
+                        <span className="font-bold text-2xl">{post.title}</span>
+                    </div>
+                    <div className="flex flex-row w-full gap-3">
+                        <div className="flex flex-col">
+                            <img
+                                src={"https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                                width={36}
+                                height={36}
+                                className="rounded-full"
+                            />
+                        </div>
+                        <div className="flex flex-col w-1/2 justify-center">
+                            <div className="flex w-full ">
+                                <span className="font-bold text-sm">{post.user.name}</span>
+                            </div>
+                            <div className="flex w-full ">
+                                <span className="italic text-sm">{post.user.email}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex w-full mt-8 mb-4">
+                        <span className="text-sm">
+                            {post.body}
+                        </span>
+                    </div>
+                </div>
+                <div className="flex w-full justify-center content-center py-4 border-b border-slate-200">
+                    <span className="italic">Comments</span>
+                </div>
+                <div className="flex flex-col h-full w-full overflow-y-auto">
+                    {
+                        post.comments.length > 0
+                            ?
+                            post.comments.map((comment, index) => (
+                                <Comment comment={comment} key={index} />
+                            ))
+                            :
+                            <div className="flex w-full h-full justify-center items-center bg-white">
+                                <span className="italic font-semibold">Comment belum ada</span>
+                            </div>
+                    }
+                </div>
+            </div>
+
         </div>
     )
 }
