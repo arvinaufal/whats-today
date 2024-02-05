@@ -1,21 +1,22 @@
 import ClientFlashComponent from "@/components/templates/ClientFlashComponent";
 import UserForm from "@/components/templates/UserForm";
+import { getUserDetail } from "@/utils/getApi";
 import Link from "next/link";
 import { redirect } from "next/navigation"; 
 import { IoArrowBackOutline } from "react-icons/io5";
 
-export default function AddUser() {
-    const postAddUser = async (payload) => {
+export default async function EditUser({ params }) {
+    const postEditUser = async (payload) => {
         "use server"
         const name = payload.name;
         const status = payload.status;
         const email = payload.email;
         const gender = payload.gender;
 
-        const add = await fetch(
-            `https://gorest.co.in/public/v2/users`,
+        const edit = await fetch(
+            `https://gorest.co.in/public/v2/users/${params.user_id}`,
             {
-                method: "POST",
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": "Bearer 984346a3c0e918b5a0ecb829a4ff0e7ca407a56ea7c602152b8fe91624465789"
@@ -28,14 +29,16 @@ export default function AddUser() {
                 }),
             }
         );
-        const result = (await add.json());
+        const result = (await edit.json());
 
-        if (!add.ok) {
-            return redirect("/users/add?error=" + result.message);
+        if (!edit.ok) {
+            return redirect(`/users/${params.user_id}?error=` + result.message);
         }
 
         return "success"
     }
+
+    const userDetail = await getUserDetail(params.user_id);
     return (
         <section className="flex flex-col min-h-screen w-screen bg-white">
             <div className="flex flex-col w-full">
@@ -55,14 +58,13 @@ export default function AddUser() {
                                     <IoArrowBackOutline size={24} color="white" />
                                 </Link>
                                 <div className="flex px-8 py-2 rounded-full bg-orange-400">
-                                    <span className="font-semibold text-xl italic text-white">Add User</span>
+                                    <span className="font-semibold text-xl italic text-white">Edit User</span>
                                 </div>
                                 <ClientFlashComponent />
                             </div>
                             <div className="w-5/6 rounded-2xl shadow-lg flex flex-col bg-orange-300">
                                 <div className="p-8 flex flex-col w-full">
-                                    <UserForm formType="add" postAdd={postAddUser} />
-
+                                    <UserForm formType="edit" postEdit={postEditUser} userData={userDetail}/>
                                 </div>
                             </div>
 

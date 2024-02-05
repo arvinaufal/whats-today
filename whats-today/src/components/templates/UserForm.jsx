@@ -5,20 +5,34 @@ import { Report } from "notiflix";
 import { useEffect, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 
-export default function UserForm({ formType, postRegister, postLogin, userData }) {
+export default function UserForm({ formType, postAdd, postEdit, userData }) {
     const router = useRouter()
     const [form, setForm] = useState({ name: '', status: '', email: '', gender: '' });
     const [pending, setPending] = useState(false);
-    const handleRegister = async () => {
-        const result = await postRegister(form);
+    const handleAdd = async () => {
+        const result = await postAdd(form);
         setPending(false);
         if (result === "success") {
             Report.success(
                 'Sukses',
-                'Berhasil register',
+                'Berhasil tambah user',
                 'Ok',
                 () => {
-                    // Redirect to '/wishlist' after the user clicks "Ok"
+                    router.push('/users');
+                }
+            );
+        }
+    }
+
+    const handleEdit = async () => {
+        const result = await postEdit(form);
+        setPending(false);
+        if (result === "success") {
+            Report.success(
+                'Sukses',
+                'Berhasil ubah data user',
+                'Ok',
+                () => {
                     router.push('/users');
                 }
             );
@@ -31,10 +45,6 @@ export default function UserForm({ formType, postRegister, postLogin, userData }
         }
     }, [])
 
-    const handleLogin = async () => {
-        await postLogin(form);
-        setPending(false);
-    }
     return (
         <form>
             <div className="pb-1">
@@ -121,8 +131,8 @@ export default function UserForm({ formType, postRegister, postLogin, userData }
                         <span className="loading loading-spinner loading-md"></span>
                     </div>
                     :
-                    <div className="h-12 bg-white rounded-xl justify-center content-center items-center cursor-pointer flex mt-4 hover:bg-slate-100 shadow-2xl" onClick={formType === 'register' ? () => { handleRegister(); setPending(true); } : () => { handleLogin(); setPending(true); }}>
-                        <span className="font-bold text-orange-400 cursor-pointer">{formType === 'register' ? "Daftar" : "Masuk"}</span>
+                    <div className="h-12 bg-white rounded-xl justify-center content-center items-center cursor-pointer flex mt-4 hover:bg-slate-100 shadow-2xl" onClick={formType === 'tambah' ? () => { handleAdd(); setPending(true); } : () => { handleEdit(); setPending(true); }}>
+                        <span className="font-bold text-orange-400 cursor-pointer">{formType === 'tambah' ? "Tambah" : "Edit"}</span>
                     </div>
             }
         </form>

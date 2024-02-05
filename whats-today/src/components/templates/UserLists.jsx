@@ -3,7 +3,7 @@
 import { getUsers } from "@/utils/getApi";
 import UserRow from "../organisms/UserRow";
 
-export default function UserLists({ users }) {
+export default function UserLists({ users, deleteUser }) {
     // const users = await getUsers();
 
     return (
@@ -23,7 +23,7 @@ export default function UserLists({ users }) {
                     users.length > 0
                         ?
                         users.map((user, index) => (
-                            <UserRow user={user} key={index} index={index} />
+                            <UserRow user={user} key={index} index={index} deleteUser={deleteUser} />
                         ))
                         :
                         <tr className="collaps">
