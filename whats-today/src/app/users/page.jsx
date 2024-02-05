@@ -7,6 +7,7 @@ import { getUsers } from "@/utils/getApi";
 import { useEffect, useState } from "react";
 import UserPagination from "@/components/organisms/UserPagination";
 import { useUserPage } from "@/context";
+import Link from "next/link";
 
 
 export default function User() {
@@ -59,9 +60,9 @@ export default function User() {
                         </div>
 
                         <div className="flex w-1/2 h-full p-2 justify-end items-center mr-2">
-                            <div className="flex py-2 px-6 rounded-full bg-orange-400 hover:bg-orange-500 gap-2 items-center justify-center cursor-pointer">
+                            <Link href={'/users/add'} className="flex py-2 px-6 rounded-full bg-orange-400 hover:bg-orange-500 gap-2 items-center justify-center cursor-pointer">
                                 <FaPlus size={18} color="white" /> <span className="font-semibold text-white">Add User</span>
-                            </div>
+                            </Link>
                         </div>
                     </div>
                     <div className="flex w-full h-full p-4 justify-center items-center mt-4">
