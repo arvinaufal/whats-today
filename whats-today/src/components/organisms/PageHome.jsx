@@ -4,17 +4,16 @@ import {
     IoArrowBackOutline,
 } from "react-icons/io5";
 import { useRouter } from 'next/navigation'
-import { useStore } from "zustand";
 import { useEffect } from "react";
 import { usePage } from "@/context";
 import { useSearchParams } from 'next/navigation'
 
-export default function Page() {
+export default function PageHome() {
     const router = useRouter();
-    const setPage = usePage((state) => state.setPage)
+    const setPage = usePage((state) => state.setPage);
     const page = usePage((state) => state.page);
-    const searchParams = useSearchParams()
-    const pageQuery = searchParams.get('page')
+    const searchParams = useSearchParams();
+    const pageQuery = searchParams.get('page');
 
     const nextPage = () => {
         setPage(page + 1);
@@ -23,11 +22,9 @@ export default function Page() {
 
     const prevPage = () => {
         if (page - 1 === 0) {
-            // setCurrentPage(1);
             setPage(1);
             router.push(`/?page=1`);
         } else {
-            // setCurrentPage((prevPage) => prevPage - 1);
             setPage(page - 1);
             router.push(`/?page=${page - 1}`);
         }

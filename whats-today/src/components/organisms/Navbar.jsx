@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Navbar() {
     return (
         <div className="flex flex-col md:mb-8 md:flex-row w-full md:py-1 md:px-6 bg-white sticky top-0 z-10 shadow-md">
@@ -6,14 +8,14 @@ export default function Navbar() {
             </div>
             <div className="hidden md:flex flex-row gap-4 pl-16">
                 <div className="flex justify-center items-end cursor-pointer gap-14">
-                    <span className={`font-semibold text-orange-400 text-2xl pb-2 relative inline-block group mb-4 cursor-pointer`}>
+                    <Link href={'/'} className={`font-semibold text-orange-400 text-2xl pb-2 relative inline-block group mb-4 cursor-pointer`}>
                         Home
                         <span className={`absolute inset-x-0 inset-y-10 bottom-0 h-1.5 secondary-color rounded-full transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100 bg-orange-300`}></span>
-                    </span>
-                    <span className={`font-semibold text-orange-400 text-2xl pb-2 relative inline-block group mb-4 cursor-pointer`}>
+                    </Link>
+                    <Link href={'/users'} className={`font-semibold text-orange-400 text-2xl pb-2 relative inline-block group mb-4 cursor-pointer`}>
                         User
                         <span className={`absolute inset-x-0 inset-y-10 bottom-0 h-1.5 secondary-color rounded-full transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100 bg-orange-300`}></span>
-                    </span>
+                    </Link>
 
                 </div>
             </div>

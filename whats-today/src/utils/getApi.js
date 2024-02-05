@@ -79,3 +79,24 @@ export const getDetailPost = async (post_id) => {
         throw new Error("Failed to fetch data");
     }
 };
+
+
+export const getUsers = async (page, name) => {
+    if (!page) {
+        page = 1;
+    }
+    
+    if (!name) {
+        name = "";
+    }
+
+    try {
+        let res = await fetch(
+            `https://gorest.co.in/public/v2/users?page=${page}&per_page=20&name=${name}`
+        );
+
+        return res.json();
+    } catch (error) {
+        throw new Error("Failed to fetch data");
+    }
+};

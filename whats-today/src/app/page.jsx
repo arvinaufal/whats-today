@@ -1,36 +1,18 @@
-"use client"
+"use server"
 import Navbar from "@/components/organisms/Navbar";
-import Page from "@/components/organisms/Page";
-import PostCard from "@/components/organisms/PostCard";
-import { usePage } from "@/context";
-import { getPosts, getUserDetail } from "@/utils/getApi";
-import { Suspense, useEffect, useState } from "react";
+import Page from "@/components/organisms/PageHome";
+import Posts from "@/components/templates/Posts";
+import { Suspense } from "react";
 
-
-export default function Home() {
-  const [posts, setPosts] = useState([]);
-  const page = usePage((state) => state.page);
-
-  useEffect(() => {
-    async function fetchPosts() {
-      const postsData = await getPosts(page);
-      setPosts(postsData);
-    }
-
-    fetchPosts();
-  }, [page])
+export default async function Home() {
 
   return (
     <div className="w-screen min-h-screen items-center bg-orange-200">
       <div className="flex flex-col w-full items-center md:pb-10">
         <Navbar />
-          {
-            posts?.length > 0
-            &&
-            posts.map((post, index) => (
-              <PostCard post={post} key={index} />
-            ))
-          }
+        <Suspense fallback={<div>Loading ...</div>} >
+          <Posts />
+        </Suspense>
       </div>
       <div className="flex w-full justify-center items-center py-4">
         <Page />
