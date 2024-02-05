@@ -85,14 +85,14 @@ export const getUsers = async (page, name) => {
     if (!page) {
         page = 1;
     }
-    
+
     if (!name) {
         name = "";
     }
 
     try {
         let res = await fetch(
-            `https://gorest.co.in/public/v2/users?page=${page}&per_page=20&name=${name}`
+            `https://gorest.co.in/public/v2/users?page=${page}&per_page=10&name=${name}`
         );
 
         return res.json();

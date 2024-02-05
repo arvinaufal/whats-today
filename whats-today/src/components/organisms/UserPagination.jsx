@@ -3,30 +3,25 @@ import {
     IoArrowForwardOutline,
     IoArrowBackOutline,
 } from "react-icons/io5";
-import { useRouter } from 'next/navigation'
 import { useEffect } from "react";
-import { usePage } from "@/context";
+import { useUserPage } from "@/context";
 import { useSearchParams } from 'next/navigation'
 
 export default function UserPagination() {
-    const router = useRouter();
-    const setPage = usePage((state) => state.setPage);
-    const page = usePage((state) => state.page);
+    const setPage = useUserPage((state) => state.setPage);
+    const page = useUserPage((state) => state.page);
     const searchParams = useSearchParams();
     const pageQuery = searchParams.get('page');
 
     const nextPage = () => {
         setPage(page + 1);
-        router.push(`/?page=${page + 1}`);
     }
 
     const prevPage = () => {
         if (page - 1 === 0) {
             setPage(1);
-            router.push(`/?page=1`);
         } else {
             setPage(page - 1);
-            router.push(`/?page=${page - 1}`);
         }
     }
 
@@ -36,19 +31,20 @@ export default function UserPagination() {
                 setPage(pageQuery * 1);
             }
         } else {
-            router.push(`/?page=${1}`);
+            setPage(1);
         }
-    }, [pageQuery])
+    }, [pageQuery]);
+
     return (
         <div className="flex flex-row justify-center items-center  gap-4">
-            <div className="flex bg-white cursor-pointer shadow-2xl p-2 rounded-full" onClick={prevPage}>
-                <IoArrowBackOutline size={24} color="orange" />
+            <div className="flex bg-orange-400 cursor-pointer shadow-2xl p-2 rounded-full hover:bg-orange-600" onClick={prevPage}>
+                <IoArrowBackOutline size={24} color="white" />
             </div>
-            <div className="flex w-10 bg-white cursor-pointer shadow-2xl px-3 py-2 rounded-xl justify-center items-center">
-                <span className="font-semibold text-orange-400">{page}</span>
+            <div className="flex w-10 bg-orange-400 cursor-pointer shadow-2xl px-3 py-2 rounded-xl justify-center items-center hover:bg-orange-600">
+                <span className="font-semibold text-white">{page}</span>
             </div>
-            <div className="flex bg-white cursor-pointer shadow-2xl p-2 rounded-full" onClick={nextPage}>
-                <IoArrowForwardOutline size={24} color="orange" />
+            <div className="flex bg-orange-400 cursor-pointer shadow-2xl p-2 rounded-full hover:bg-orange-600" onClick={nextPage}>
+                <IoArrowForwardOutline size={24} color="white" />
             </div>
         </div>
     )

@@ -5,24 +5,26 @@ import { FaPlus } from "react-icons/fa6";
 import UserLists from "@/components/templates/UserLists";
 import { getUsers } from "@/utils/getApi";
 import { useEffect, useState } from "react";
+import UserPagination from "@/components/organisms/UserPagination";
+import { useUserPage } from "@/context";
 
 
 export default function User() {
     const [searchQuery, setSearchQuery] = useState("");
     const [users, setUsers] = useState([]);
+    const page = useUserPage((state) => state.page);
     async function searchUser() {
-        const users = await getUsers(1, searchQuery);
-
+        const users = await getUsers(page, searchQuery);
         setUsers(users);
     }
 
     useEffect(() => {
         async function fetchUsers() {
-            const users = await getUsers(1);
+            const users = await getUsers(page, searchQuery);
             setUsers(users);
         }
         fetchUsers();
-    }, []);
+    }, [page]);
 
     return (
         <div className="flex flex-col w-screen min-h-screen bg-orange-200">
@@ -34,7 +36,7 @@ export default function User() {
             </div>
 
             <div className="flex flex-col w-full h-full mt-16 justify-center items-center ">
-                <div className="flex flex-col w-5/6 bg-white p-4 rounded-xl">
+                <div className="flex flex-col w-5/6 bg-white p-4 rounded-xl mb-10">
                     <div className="flex flex-row w-full">
                         <div className="flex flex-col justify-center items-center w-1/2 ">
                             <div className="flex w-full flex-row rounded-full shadow-lg justify-center ml-10 items-center h-9 border border-orange-300">
@@ -65,8 +67,8 @@ export default function User() {
                     <div className="flex w-full h-full p-4 justify-center items-center mt-4">
                         <UserLists users={users} />
                     </div>
-                    <div>
-                        
+                    <div className="w-full flex flex-row py-3 justify-center items-center">
+                        <UserPagination />
                     </div>
                 </div>
             </div>

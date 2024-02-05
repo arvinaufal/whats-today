@@ -1,11 +1,13 @@
 "use client"
 import { HiPencilSquare } from "react-icons/hi2";
 import { FaTrash } from "react-icons/fa6";
+import { useUserPage } from "@/context";
 
 export default function UserRow({ user, index }) {
+    const page = useUserPage((state) => state.page);
     return (
         <tr>
-            <td className="border border-slate-300 p-2 text-center">{index + 1}</td>
+            <td className="border border-slate-300 p-2 text-center">{((page - 1) * 10) + index + 1}</td>
             <td className="border border-slate-300 p-2">{user.name}</td>
             <td className="border border-slate-300 p-2">{user.email}</td>
             <td className="border border-slate-300 p-2 text-center">{user.gender}</td>
