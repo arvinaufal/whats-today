@@ -57,7 +57,7 @@ export default function AddUser() {
                                 <div className="flex px-8 py-2 rounded-full bg-orange-400">
                                     <span className="font-semibold text-xl italic text-white">Add User</span>
                                 </div>
-                                <Suspense fallback={<div>Loading ...</div>} >
+                                <Suspense>
                                     <ClientFlashComponent />
                                 </Suspense>
                             </div>

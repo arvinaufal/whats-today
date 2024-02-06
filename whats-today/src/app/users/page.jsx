@@ -99,7 +99,7 @@ export default function User() {
                         <UserLists users={users} deleteUser={deleteUser} />
                     </div>
                     <div className="w-full flex flex-row py-3 justify-center items-center">
-                        <Suspense fallback={<div>Loading ...</div>} >
+                        <Suspense>
                             <UserPagination />
                         </Suspense>
                     </div>
