@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import UserPagination from "@/components/organisms/UserPagination";
 import { useUserPage } from "@/context";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { Report } from "notiflix";
 
 export default function User() {
@@ -27,8 +26,6 @@ export default function User() {
         }
         fetchUsers();
     }, [page]);
-
-    const router = useRouter();
 
     async function deleteUser(user_id) {
         const deleteUser = await fetch(
@@ -58,7 +55,6 @@ export default function User() {
                 setUsers(users);
             }
         );
-
     }
 
     return (

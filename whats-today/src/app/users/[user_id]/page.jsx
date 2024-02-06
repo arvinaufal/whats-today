@@ -2,7 +2,7 @@ import ClientFlashComponent from "@/components/templates/ClientFlashComponent";
 import UserForm from "@/components/templates/UserForm";
 import { getUserDetail } from "@/utils/getApi";
 import Link from "next/link";
-import { redirect } from "next/navigation"; 
+import { redirect } from "next/navigation";
 import { IoArrowBackOutline } from "react-icons/io5";
 
 export default async function EditUser({ params }) {
@@ -48,12 +48,11 @@ export default async function EditUser({ params }) {
                             <div className="">
                                 <img src="/images/mobile-login-rafiki.svg" alt="" style={{ width: 600 }} />
                             </div>
-
                         </div>
                     </div>
                     <div className=" flex flex-col justify-center content-center items-center w-1/2 mb-20">
                         <div className="container w-2/3 h-2/3  flex flex-col justify-center content-center items-center mr-48">
-                            <div className="flex w-full mx-4 my-4 justify-center items-center gap-4">
+                            <div className="flex w-full my-4 justify-center items-center gap-4 mb-12 mt-8">
                                 <Link href={'/users'} className="flex bg-orange-500 cursor-pointer shadow-2xl p-2 rounded-full hover:bg-orange-600">
                                     <IoArrowBackOutline size={24} color="white" />
                                 </Link>
@@ -64,10 +63,9 @@ export default async function EditUser({ params }) {
                             </div>
                             <div className="w-5/6 rounded-2xl shadow-lg flex flex-col bg-orange-300">
                                 <div className="p-8 flex flex-col w-full">
-                                    <UserForm formType="edit" postEdit={postEditUser} userData={userDetail}/>
+                                    <UserForm formType="edit" postEdit={postEditUser} userData={userDetail} />
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

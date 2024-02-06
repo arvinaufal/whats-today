@@ -4,7 +4,6 @@ import { FaTrash } from "react-icons/fa6";
 import { useUserPage } from "@/context";
 import Link from "next/link";
 
-
 export default function UserRow({ user, index, deleteUser }) {
     const page = useUserPage((state) => state.page);
     async function handleDeleteUser() {

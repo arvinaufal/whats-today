@@ -1,11 +1,7 @@
 "use client"
-
-import { getUsers } from "@/utils/getApi";
 import UserRow from "../organisms/UserRow";
 
 export default function UserLists({ users, deleteUser }) {
-    // const users = await getUsers();
-
     return (
         <table className="w-full border border-slate-400 border-collapse">
             <thead>

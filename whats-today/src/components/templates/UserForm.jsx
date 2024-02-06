@@ -1,9 +1,7 @@
 "use client"
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Report } from "notiflix";
 import { useEffect, useState } from "react";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 
 export default function UserForm({ formType, postAdd, postEdit, userData }) {
     const router = useRouter()
@@ -80,9 +78,7 @@ export default function UserForm({ formType, postAdd, postEdit, userData }) {
                     className="focus:bg-orange-100 focus:outline-none p-4 border-solid border-slate-800 rounded-lg h-10 w-full border-opacity-10 pr-10"
                     style={{ borderWidth: 1 }}
                 />
-
             </div>
-
             <div className="pb-1">
                 <label htmlFor="status" className="opacity-90 text-sm">
                     Status
@@ -121,8 +117,6 @@ export default function UserForm({ formType, postAdd, postEdit, userData }) {
                     <option value="Female">Female</option>
                 </select>
             </div>
-
-
             {
                 pending
                     ?

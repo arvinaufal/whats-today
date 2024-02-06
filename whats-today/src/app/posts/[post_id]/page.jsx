@@ -1,5 +1,4 @@
 import Comment from "@/components/organisms/Comment";
-import PostCard from "@/components/organisms/PostCard"
 import { getDetailPost } from "@/utils/getApi";
 import Link from "next/link";
 import {
@@ -14,8 +13,6 @@ export default async function DetailPost({ params }) {
 
     return (
         <div className="flex w-screen h-screen bg-orange-100 md:items-center md:justify-center">
-
-            {/* Display for mid-wide screen */}
             <div className="hidden md:flex flex-row w-4/5 h-5/6 bg-purple-100 rounded-xl ">
                 <div className="flex flex-col w-1/2 h-full border-r border-slate-200 bg-white rounded-l-xl items-center">
                     <div className="flex w-full h-1/6  py-4 px-6">
@@ -91,7 +88,6 @@ export default async function DetailPost({ params }) {
                     </div>
                 </div>
             </div>
-
             <div className="flex flex-col md:hidden w-full bg-white">
                 <div className="flex flex-row w-full p-4 border border-b-slate-300">
                     <Link href={`/`} className="flex flex-row items-center cursor-pointer">
@@ -146,7 +142,6 @@ export default async function DetailPost({ params }) {
                     }
                 </div>
             </div>
-
         </div>
     )
 }

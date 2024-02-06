@@ -16,7 +16,6 @@ export default function Navbar() {
                         User
                         <span className={`absolute inset-x-0 inset-y-10 bottom-0 h-1.5 secondary-color rounded-full transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100 bg-orange-300`}></span>
                     </Link>
-
                 </div>
             </div>
             <div className="md:hidden flex flex-row w-full my-2">
@@ -27,7 +26,6 @@ export default function Navbar() {
                     <span className="font-semibold text-2xl text-orange-300">User</span>
                 </div>
             </div>
-
         </div>
     )
 }
