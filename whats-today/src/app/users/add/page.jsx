@@ -2,6 +2,7 @@ import ClientFlashComponent from "@/components/templates/ClientFlashComponent";
 import UserForm from "@/components/templates/UserForm";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 import { IoArrowBackOutline } from "react-icons/io5";
 
 export default function AddUser() {
@@ -56,7 +57,9 @@ export default function AddUser() {
                                 <div className="flex px-8 py-2 rounded-full bg-orange-400">
                                     <span className="font-semibold text-xl italic text-white">Add User</span>
                                 </div>
-                                <ClientFlashComponent />
+                                <Suspense fallback={<div>Loading ...</div>} >
+                                    <ClientFlashComponent />
+                                </Suspense>
                             </div>
                             <div className="w-5/6 rounded-2xl shadow-lg flex flex-col bg-orange-300">
                                 <div className="p-8 flex flex-col w-full">

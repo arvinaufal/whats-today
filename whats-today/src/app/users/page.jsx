@@ -4,7 +4,7 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 import UserLists from "@/components/templates/UserLists";
 import { getUsers } from "@/utils/getApi";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import UserPagination from "@/components/organisms/UserPagination";
 import { useUserPage } from "@/context";
 import Link from "next/link";
@@ -99,7 +99,9 @@ export default function User() {
                         <UserLists users={users} deleteUser={deleteUser} />
                     </div>
                     <div className="w-full flex flex-row py-3 justify-center items-center">
-                        <UserPagination />
+                        <Suspense fallback={<div>Loading ...</div>} >
+                            <UserPagination />
+                        </Suspense>
                     </div>
                 </div>
             </div>
