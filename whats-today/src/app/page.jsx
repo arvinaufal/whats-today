@@ -10,12 +10,14 @@ export default async function Home() {
     <div className="w-screen min-h-screen items-center bg-orange-200">
       <div className="flex flex-col w-full items-center md:pb-10">
         <Navbar />
-        <Suspense fallback={<div>Loading ...</div>} >
+        <Suspense>
           <Posts />
         </Suspense>
       </div>
       <div className="flex w-full justify-center items-center py-4">
-        <Page />
+        <Suspense>
+          <Page />
+        </Suspense>
       </div>
     </div>
   );

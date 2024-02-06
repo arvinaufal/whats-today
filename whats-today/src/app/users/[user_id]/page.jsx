@@ -3,6 +3,7 @@ import UserForm from "@/components/templates/UserForm";
 import { getUserDetail } from "@/utils/getApi";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 import { IoArrowBackOutline } from "react-icons/io5";
 
 export default async function EditUser({ params }) {
@@ -59,7 +60,9 @@ export default async function EditUser({ params }) {
                                 <div className="flex px-8 py-2 rounded-full bg-orange-400">
                                     <span className="font-semibold text-xl italic text-white">Edit User</span>
                                 </div>
-                                <ClientFlashComponent />
+                                <Suspense>
+                                    <ClientFlashComponent />
+                                </Suspense>
                             </div>
                             <div className="w-5/6 rounded-2xl shadow-lg flex flex-col bg-orange-300">
                                 <div className="p-8 flex flex-col w-full">
